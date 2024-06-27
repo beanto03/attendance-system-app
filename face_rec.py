@@ -17,9 +17,9 @@ import os
 
 
 # Connect to Redis Client
-hostname = 'redis-10685.c292.ap-southeast-1-1.ec2.cloud.redislabs.com'
-portnumber = 10685
-password = 'pcMyrP3ueVLrKtijfklnrOxCsGKrz1Lf'
+hostname = 'redis-12886.c15.us-east-1-2.ec2.redns.redis-cloud.com'
+portnumber = '12886'
+password = 'RXoubF7J9wGFqLEdgH67vNjjPyjcanVS'
 
 r = redis.StrictRedis(host=hostname,
                       port=portnumber,
@@ -40,7 +40,7 @@ def retrive_data(name):
 
 
 # configure face analysis
-faceapp = FaceAnalysis(name='buffalo_l',root='insightface_model', providers = ['AzureExecutionProvider'])
+faceapp = FaceAnalysis(name='buffalo_l',root='insightface_model', providers = ['CPUExecutionProvider'])
 faceapp.prepare(ctx_id = 0, det_size=(640,640), det_thresh = 0.5)
 
 # ML Search Algorithm
