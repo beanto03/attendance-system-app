@@ -40,7 +40,7 @@ def retrive_data(name):
 
 
 # configure face analysis
-faceapp = FaceAnalysis(name='buffalo_l',root='insightface_model', providers = ['AzureExecutionProvider'])
+faceapp = FaceAnalysis(name='buffalo_sc',root='insightface_model', providers = ['CPUExecutionProvider'])
 faceapp.prepare(ctx_id = 0, det_size=(640,640), det_thresh = 0.5)
 
 # ML Search Algorithm
