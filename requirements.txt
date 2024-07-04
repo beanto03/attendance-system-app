@@ -7,4 +7,3 @@ streamlit
 streamlit-webrtc
 insightface
 onnxruntime
-streamlit-authenticator
