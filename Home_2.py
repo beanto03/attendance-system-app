@@ -1,40 +1,31 @@
-import pickle
+# home.py
+
+import streamlit as st
 from pathlib import Path
+import pandas as pd
+import plotly.express as px
+import streamlit_authenticator as stauth
 
-import pandas as pd  # pip install pandas openpyxl
-import plotly.express as px  # pip install plotly-express
-import streamlit as st  # pip install streamlit
-import streamlit_authenticator as stauth  # pip install streamlit-authenticator
+# Dummy user database (replace with actual user database in a real application)
+users = {
+    "amir": {
+        "name": "Amir",
+        "password": "123"  # Replace with hashed password in a real application
+    }
+}
 
-# --- USER AUTHENTICATION ---
-names = ["Peter Parker", "Rebecca Miller"]
-usernames = ["pparker", "rmiller"]
+def main():
+    st.set_page_config(page_title='Attendance System', layout='wide')
+    st.info('This is a purely informational message', icon="ℹ️")
 
-# load hashed passwords
-file_path = Path(__file__).parent / "hashed_pw.pkl"
-with file_path.open("rb") as file:
-    hashed_passwords = pickle.load(file)
-
-authenticator = stauth.Authenticate(names, usernames, hashed_passwords,
-    "face-recognition-insightface", "abcdef", cookie_expiry_days=30)
-
-name, authentication_status, username = authenticator.login("Login", "main")
-
-if authentication_status == False:
-    st.error("Username/password is incorrect")
-
-if authentication_status == None:
-    st.warning("Please enter your username and password")
-
-if authentication_status:
-    st.set_page_config(page_title='Attendance System',layout='wide')
-
+    username = st.sidebar.title(f"Welcome {users['name']}")
     st.header('Attendance System using Face Recognition')
 
-    with st.spinner("Loading Models and Conneting to Redis db ..."):
+    with st.spinner("Loading Models and Connecting to Redis db ..."):
+        # Perform operations needed for homepage after successful login
         import face_rec
-        
-    authenticator.logout("Logout", "sidebar")
-    st.sidebar.title(f"Welcome {name}")    
-    st.success('Model loaded sucesfully')
-    st.success('Redis db sucessfully connected')
+        st.success('Model loaded successfully')
+        st.success('Redis db successfully connected')
+
+if __name__ == '__main__':
+    main()
